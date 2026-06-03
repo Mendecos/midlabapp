@@ -1,0 +1,27 @@
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.container-formulario {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+.cards-itens{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.cards-itens h1{
+    font-size: medium;
+  
+}
+.cards-itens h2{
+    font-size: small;
+    color: #777;
+}
