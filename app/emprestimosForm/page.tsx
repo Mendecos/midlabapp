@@ -1,6 +1,18 @@
 "use client";
 import "./emprestimosForm.css";
+import { exportarCSV } from "../../utils/exportarCSV";
 import { useState, useEffect } from "react";
+
+export interface Emprestimo {
+  id: number;
+  material: string;
+  marcaModelo: string;
+  bolsista: string;
+  aluno: string;
+  matricula: string;
+  dataAtual: string;
+  prazoDevolucao: string;
+}
 export default function EmprestimosForm() {
   const [emprestimos, setEmprestimos] = useState<Emprestimo[]>([]);
   const [material, setMaterial] = useState("");
@@ -10,17 +22,8 @@ export default function EmprestimosForm() {
   const [matricula, setMatricula] = useState("");
   const [dataAtual, setDataAtual] = useState("");
   const [prazoDevolucao, setPrazoDevolucao] = useState("");
+  const [pesquisa, setPesquisa] = useState("");
 
-  interface Emprestimo {
-    id: number;
-    material: string;
-    marcaModelo: string;
-    bolsista: string;
-    aluno: string;
-    matricula: string;
-    dataAtual: string;
-    prazoDevolucao: string;
-  }
   function handleEmprestimo() {
     const novoEmprestimo: Emprestimo = {
       id: Date.now(),
@@ -61,6 +64,14 @@ export default function EmprestimosForm() {
     setEmprestimos(novaLista);
     localStorage.setItem("emprestimos", JSON.stringify(novaLista));
   }
+  const emprestomosFiltro = emprestimos.filter(
+    (e) =>
+      e.material.toLowerCase().includes(pesquisa.toLowerCase()) ||
+      e.marcaModelo.toLowerCase().includes(pesquisa.toLowerCase()) ||
+      e.bolsista.toLowerCase().includes(pesquisa.toLowerCase()) ||
+      e.aluno.toLowerCase().includes(pesquisa.toLowerCase()) ||
+      e.matricula.toLowerCase().includes(pesquisa.toLowerCase()),
+  );
   return (
     <div className="container-formulario">
       <div>
@@ -174,6 +185,7 @@ export default function EmprestimosForm() {
           </div>
           <div>
             <button
+              onClick={() => exportarCSV(emprestimos)}
               type="submit"
               className="w-full rounded-md bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
             >
@@ -184,7 +196,13 @@ export default function EmprestimosForm() {
       </div>
 
       <div className="h-150 overflow-y-auto ">
-        {emprestimos.map((emprestimo) => (
+        <input
+          type="text"
+          value={pesquisa}
+          onChange={(e) => setPesquisa(e.target.value)}
+          placeholder="Pesquisar..."
+        />
+        {emprestomosFiltro.map((emprestimo) => (
           <div className="cards-itens" key={emprestimo.id}>
             <h1>Material</h1>
             <h2>{emprestimo.material}</h2>
