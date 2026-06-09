@@ -22,4 +22,4 @@ Aplicação web desenvolvida para auxiliar no controle de empréstimos de equipa
 
 ## Objetivo
 
-O projeto foi desenvolvido com o objetivo de praticar conceitos de desenvolvimento Front-End moderno, incluindo gerenciamento de estado, componentização, manipulação de dados, armazenamento local e exportação de informações em formato tabular.
+O projeto foi desenvolvido com o objetivo criar um sistema de controle de material para o laboratorio de medias digitas, Midlab da instituição IFSUL e praticar conceitos de desenvolvimento Front-End moderno, incluindo gerenciamento de estado, componentização, manipulação de dados, armazenamento local e exportação de informações em formato tabular.
