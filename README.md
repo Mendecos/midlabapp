@@ -4,7 +4,6 @@ Aplicação web desenvolvida para auxiliar no controle de empréstimos de equipa
 
 ## Funcionalidades
 
-* Login de usuário
 * Cadastro de empréstimos
 * Visualização dinâmica em cards
 * Pesquisa de registros
